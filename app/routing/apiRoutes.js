@@ -25,17 +25,38 @@ module.exports = function(app) {
   // ...the JSON is pushed to the appropriate JavaScript array
   // (ex. User fills out a reservation request... this data is then sent to the server...
   // Then the server saves the data to the tableData array)
-  	app.post("api/friends", function(req, res) {
+	app.post("/api/friends", function(req, res) {
+
+
   		friendsData.push(req.body);
+      // store user response 
 
-    //   for (var i = 0; i<friendsData.length; i++) {
-    //   var eachData = friendsData[i].scores;
-    //   var eachFriend = eachData.map(function(num) {
-    //     var friendData = parseInt(num,10);
-    //     return parseInt(num);
-    //   })
-    // }
+      var userSubmitted = req.body;
 
+
+      // compare userResponseScore to score of all over users 
+      // in the JSON file 
+
+      for (var i = 0; i < friendsData.length; i++) {
+        console.log('this is my friend data', friendsData[i]);
+        
+        //Compare user score with score of friendData
+        for (var j = 0; j < friendsData[i].scores; j++) {
+          console.log('this is my score data ', friendsData[i].scores[j]);
+          //take the score or friendsData and compare it 
+          // to the score of userSubmitted 
+
+          // whatever has the smallest difference is 
+          // the closest match 
+
+        }
+
+
+
+      }
+
+        // your matched friend 
+        res.json(true);
   	});
 
 
