@@ -40,23 +40,27 @@ module.exports = function(app) {
       for (var i = 0; i < friendsData.length; i++) {
         console.log('this is my friend data', friendsData[i]);
         
+
         //Compare user score with score of friendData
         for (var j = 0; j < friendsData[i].scores; j++) {
           console.log('this is my score data ', friendsData[i].scores[j]);
           //take the score or friendsData and compare it 
           // to the score of userSubmitted 
-
+            var scoreDifference = Math.abs(req.body.scores[j]-friendData[i].scores[j]);
           // whatever has the smallest difference is 
           // the closest match 
-
+            var closestMatch;
+        }
+        if (scoreDifference < lowScoreSum) {
+          lowScoreSum = scoreDifference
+          theClosestMatch = i;
         }
 
-
-
       }
-
+      var theClosetMatch = friendsData[closestMatch];
+      friendData.push(userSubmitted)
         // your matched friend 
-        res.json(true);
+        res.json(theClosestMatch);
   	});
 
 
